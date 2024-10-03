@@ -262,10 +262,11 @@ impl<'data> Builder<'data> {
                     } else if index == section_strings_index {
                         SectionData::SectionString
                     } else {
-                        return Err(Error(format!(
+                        SectionData::Note(section.data(endian, data)?.into())
+                       /*  return Err(Error(format!(
                             "Unsupported SHT_STRTAB section at index {}",
                             index
-                        )));
+                        ))); */
                     }
                 }
                 elf::SHT_NOTE => SectionData::Note(section.data(endian, data)?.into()),
